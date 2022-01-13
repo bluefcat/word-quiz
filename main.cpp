@@ -36,14 +36,19 @@ class Tester{
 				correct_ += score;
 				
 				if(score == 0){
-					for(const auto& mean: generator_.get_means(target)){
-						std::cout << ">>" << mean << "\n";
-					}
-					
+					std::cout << "X\n";
 					wrongs_.insert(target);
-
-					std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 				}
+				else{
+					std::cout << "O\n";
+				}
+
+				for(const auto& mean: generator_.get_means(target)){
+					std::cout << ">>" << mean << "\n";
+				}
+				
+				
+				std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 				
 				system("clear");
 				printf("[TOTAL/ANSWER] %d/%d\n", total_, correct_);
@@ -52,7 +57,10 @@ class Tester{
 				else std::cout << "Congraturation!\n";
 
 				for(const auto& item: wrongs_){
-					std::cout << item << "\t[";
+					std::cout << item << "\t";
+					if(item.length() < 8) std::cout <<"\t";
+					std::cout << "[";
+
 					for(const auto& mean: generator_.get_means(item)){
 						std::cout << mean << ", ";
 					}
