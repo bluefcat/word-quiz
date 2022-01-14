@@ -96,7 +96,10 @@ class Tester{
 int main(int args, const char* argv[]){
 	int base = 10;
 	if(args == 2) base = stoi(string(argv[1]));
-	Tester test("data/word.data", base);
+	
+	Tester test("data/18.data", base);
+	
 	test.get_test();
+	
 	return 0;
 }
